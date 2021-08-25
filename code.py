@@ -1,16 +1,18 @@
-def function1(a):
-    b = dict()
-    for c in a:
-        if c not in b:
-            b[c] = 1
-        else:
-            b[c] += 1
-    return b
+from typing import Dict
 
-def function2(a):
+
+def count_freq(seq: str) -> Dict[str:int]:
+    counts = {c: 0 for c in set(seq)}
+    for c in seq:
+        counts[c] += 1
+    return counts
+
+
+def print_freq(freq_dict: Dict[str:int]) -> None:
     print('freqs')
-    total = float(sum([a[b] for b in a.keys()]))
-    for b in a.keys():
-        print(b + ':' + str(a[b]/total))
+    total = float(sum([freq_dict[k] for k in freq_dict.keys()]))
+    for k in freq_dict.keys():
+        print(k + ':' + str(freq_dict[k] / total))
 
-function2(function1('ATCTGACGCGCGCCGC'))
+
+print_freq(count_freq('ATCTGACGCGCGCCGC'))
